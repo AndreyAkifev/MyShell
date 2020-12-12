@@ -149,7 +149,7 @@ static void Conveyor(CommandsList* list) {
     }
 }
 
-bool RunInput(const CommandsList* list, int sticks_counter) {
+bool RunInput(CommandsList* list, int sticks_counter) {
     if (list -> pipe_len == 1 && sticks_counter == 0) {
         return RunOneCommand(list);
     } else {
