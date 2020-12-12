@@ -44,7 +44,7 @@ static bool ChangeOutStream(const char* file, bool append) {
     return true;
 }
 
-static bool RunOneCommand(const CommandsList* list) {
+static bool RunOneCommand(CommandsList* list) {
     char* cmd = (list -> pipe)[0][0];
     if (IsStrEquals(cmd, "exit")) {
         if (!list -> background) {
@@ -92,7 +92,7 @@ static bool RunOneCommand(const CommandsList* list) {
     return false;
 }
 
-static void Conveyor(const CommandsList* list) {
+static void Conveyor(CommandsList* list) {
     int fd[2];
     int fd_in = -1;
     for (int i = 0; i < list -> pipe_len; i++) {
