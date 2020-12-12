@@ -11,7 +11,7 @@
 #include "utils.h"
 #include "commands_execution.h"
 
-static bool ChangeInStream(char* file) {
+static bool ChangeInStream(const char* file) {
     int rd = open(file, O_RDONLY);
     if (rd == -1) {
         fprintf(stderr, "\033[0;31mopen: %s \033[0m\n",
@@ -27,7 +27,7 @@ static bool ChangeInStream(char* file) {
     return true;
 }
 
-static bool ChangeOutStream(char* file, bool append) {
+static bool ChangeOutStream(const char* file, bool append) {
     int append_flag = append ? O_APPEND : O_TRUNC;
     int wd = open(file, O_WRONLY | O_CREAT | append_flag, 0666);
     if (wd == -1) {
@@ -44,7 +44,7 @@ static bool ChangeOutStream(char* file, bool append) {
     return true;
 }
 
-static bool RunOneCommand(CommandsList* list) {
+static bool RunOneCommand(const CommandsList* list) {
     char* cmd = (list -> pipe)[0][0];
     if (IsStrEquals(cmd, "exit")) {
         if (!list -> background) {
@@ -92,7 +92,7 @@ static bool RunOneCommand(CommandsList* list) {
     return false;
 }
 
-static void Conveyor(CommandsList* list) {
+static void Conveyor(const CommandsList* list) {
     int fd[2];
     int fd_in = -1;
     for (int i = 0; i < list -> pipe_len; i++) {
@@ -149,7 +149,7 @@ static void Conveyor(CommandsList* list) {
     }
 }
 
-bool RunInput(CommandsList* list, int sticks_counter) {
+bool RunInput(const CommandsList* list, int sticks_counter) {
     if (list -> pipe_len == 1 && sticks_counter == 0) {
         return RunOneCommand(list);
     } else {
