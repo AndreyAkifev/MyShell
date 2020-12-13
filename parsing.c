@@ -214,7 +214,7 @@ bool ParseInput(int* c) {
                     fprintf(stderr, 
                             "\033[0;31mredirecting of output is allowed ");
                     fprintf(stderr, 
-                            "only in last command of conveyor\033[0m\n");
+                            "only in the last command of conveyor\033[0m\n");
                     ClearInfo(&list, &cmd);
                     while (!IsEndOfInput(getchar()));
                     return false;
