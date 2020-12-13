@@ -24,10 +24,6 @@ typedef struct CommandsList {
     int pipe_len;
 } CommandsList;
 
-typedef struct Pair {
-
-} Pair;
-
 void InitString(String* s);
 
 void InitVector(Vector* arr);
